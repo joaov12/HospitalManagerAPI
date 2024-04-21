@@ -17,12 +17,14 @@ namespace HospitalManager.Repositorios
         public async Task<List<Departamento>> BuscarTodosDepartamentos()
         {
              return await _dbContext.Departamentos
-        .Include(d => d.Funcionarios) // Carrega os funcionários relacionados
-        .ToListAsync();
+             .Include(d => d.Funcionarios) // Carrega os funcionários relacionados
+             .ToListAsync();
         }
         public async Task<Departamento> BuscarPorId(Guid id)
         {
-            return await _dbContext.Departamentos.FirstOrDefaultAsync(x => x.Id == id);
+            return await _dbContext.Departamentos
+                .Include(d => d.Funcionarios)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<Departamento> Adicionar(Departamento departamento)
