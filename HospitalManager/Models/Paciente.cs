@@ -7,7 +7,7 @@
         public DateTime DataNascimento { get; set; }
         public string Telefone { get; set; }
         public string Endereco { get; set; }
-        public string ObservacoesPaciente { get; set; }
+        public string? ObservacoesPaciente { get; set; }
 
     }
 }
