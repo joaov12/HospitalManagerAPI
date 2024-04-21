@@ -24,6 +24,13 @@ namespace HospitalManager
                 options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
+            // No método de configuração do seu serviço de serialização (por exemplo, ConfigureServices no Startup.cs)
+            builder.Services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+            });
+
+
             builder.Services.AddScoped<IFuncionarioRepositorio, FuncionarioRepositorio>();
             builder.Services.AddScoped<IMedicoRepositorio, MedicoRepositorio>();
             builder.Services.AddScoped<IEnfermeiroRepositorio, EnfermeiroRepositorio>();

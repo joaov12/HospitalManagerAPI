@@ -49,12 +49,18 @@ namespace HospitalManager.Controllers
             return Ok(departamento);
         }
 
-        [HttpPut("AdicionaMedicoDepto")]
-        public async Task<ActionResult<Departamento>> AdicionaMedicoDepartamento(Guid id, Medico medico)
+        [HttpPut("{departamentoId}/adicionar-funcionario/{funcionarioId}")]
+        public async Task<ActionResult> AdicionarFuncionarioAoDepartamento(Guid departamentoId, Guid funcionarioId)
         {
-            Departamento departamento = await _departamentoRepositorio.AdicionarMedicoDepartamento(id, medico);
-
-            return departamento;
+            try
+            {
+                await _departamentoRepositorio.AdicionarFuncionarioAoDepartamento(departamentoId, funcionarioId);
+                return Ok("Funcionário adicionado ao departamento com sucesso");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

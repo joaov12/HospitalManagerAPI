@@ -4,6 +4,7 @@ using HospitalManager.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalManager.Migrations
 {
     [DbContext(typeof(HospitalManagerDBContext))]
-    partial class HospitalManagerDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240421132357_conect")]
+    partial class conect
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,7 +51,7 @@ namespace HospitalManager.Migrations
                     b.Property<DateTime>("DataNascimento")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("DepartamentoId")
+                    b.Property<Guid>("DepartamentoId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Discriminator")
@@ -139,7 +141,9 @@ namespace HospitalManager.Migrations
                 {
                     b.HasOne("HospitalManager.Models.Departamento", "Departamento")
                         .WithMany("Funcionarios")
-                        .HasForeignKey("DepartamentoId");
+                        .HasForeignKey("DepartamentoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Departamento");
                 });

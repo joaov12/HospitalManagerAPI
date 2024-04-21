@@ -16,5 +16,14 @@ namespace HospitalManager.Data
         public DbSet<Enfermeiro> Enfermeiros { get; set; }
         public DbSet<Paciente> Pacientes { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Funcionario>()
+                .HasOne(f => f.Departamento)
+                .WithMany(d => d.Funcionarios)
+                .HasForeignKey(f => f.DepartamentoId);
+        }
+
+
     }
 }

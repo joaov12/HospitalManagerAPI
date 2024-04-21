@@ -8,7 +8,7 @@ namespace HospitalManager.Repositorios.Interfaces
         Task<Departamento> BuscarPorId(Guid id);
         Task<Departamento> Adicionar(Departamento departamento);
         Task<Departamento> Atualizar(Departamento departamento);
-        Task<Departamento> AdicionarMedicoDepartamento(Guid id, Medico medico);
+        Task<Departamento> AdicionarFuncionarioAoDepartamento(Guid departamentoId, Guid funcionarioId);
         Task<bool> Apagar(Guid id);
     }
 }

@@ -16,7 +16,9 @@ namespace HospitalManager.Repositorios
 
         public async Task<List<Departamento>> BuscarTodosDepartamentos()
         {
-            return await _dbContext.Departamentos.ToListAsync();
+             return await _dbContext.Departamentos
+        .Include(d => d.Funcionarios) // Carrega os funcionários relacionados
+        .ToListAsync();
         }
         public async Task<Departamento> BuscarPorId(Guid id)
         {
@@ -58,23 +60,29 @@ namespace HospitalManager.Repositorios
             return true;
         }
 
-        public async Task<Departamento> AdicionarMedicoDepartamento(Guid id, Medico medico)
+        public async Task<Departamento> AdicionarFuncionarioAoDepartamento(Guid departamentoId, Guid funcionarioId)
         {
+            var departamento = await _dbContext.Departamentos
+                .Include(d => d.Funcionarios)
+                .FirstOrDefaultAsync(d => d.Id == departamentoId);
 
-            Departamento departamento = await BuscarPorId(id);
-            if (medico.Id == null)
+            if (departamento == null)
             {
-                throw new Exception("Usuario nao encontrado");
+                throw new Exception("Departamento não encontrado");
             }
-            if (departamento.Funcionarios == null)
+
+            var funcionario = await _dbContext.Funcionarios.FindAsync(funcionarioId);
+
+            if (funcionario == null)
             {
-                departamento.Funcionarios = new List<Funcionario>(); // Initialize Funcionarios if null
+                throw new Exception("Funcionário não encontrado");
             }
-            departamento.Funcionarios.Add((Funcionario)medico);
+
+            departamento.Funcionarios.Add(funcionario);
             await _dbContext.SaveChangesAsync();
             return departamento;
-            
         }
 
+        
     }
 }

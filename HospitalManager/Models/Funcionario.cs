@@ -13,5 +13,11 @@ namespace HospitalManager.Models
         public string Telefone { get; set; }
         public string Endereco { get; set; }
 
+        // Propriedade de chave estrangeira
+        public Guid? DepartamentoId { get; set; }
+
+        // Propriedade de navegação
+        public Departamento? Departamento { get; set; }
+
     }
 }
