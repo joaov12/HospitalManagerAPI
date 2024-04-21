@@ -15,11 +15,11 @@ namespace HospitalManager.Repositorios
 
         public async Task<List<Enfermeiro>> BuscarTodosEnfermeiros()
         {
-            return await _dbContext.Enfermeiros.ToListAsync();
+            return await _dbContext.Enfermeiros.Include(d => d.Departamento).ToListAsync();
         }
         public async Task<Enfermeiro> BuscarPorId(Guid id)
         {
-            return await _dbContext.Enfermeiros.FirstOrDefaultAsync(x => x.Id == id);
+            return await _dbContext.Enfermeiros.Include(d => d.Departamento).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<Enfermeiro> Adicionar(Enfermeiro enfermeiro)
