@@ -49,7 +49,7 @@ namespace HospitalManager.Controllers
             return Ok(departamento);
         }
 
-        [HttpPut("{departamentoId}/adicionar-funcionario/{funcionarioId}")]
+        [HttpPut("{departamentoId}/adicionar-funcionario-depto/{funcionarioId}")]
         public async Task<ActionResult> AdicionarFuncionarioAoDepartamento(Guid departamentoId, Guid funcionarioId)
         {
             try
