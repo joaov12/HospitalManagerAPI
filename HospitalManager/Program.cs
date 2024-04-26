@@ -36,6 +36,7 @@ namespace HospitalManager
             builder.Services.AddScoped<IEnfermeiroRepositorio, EnfermeiroRepositorio>();
             builder.Services.AddScoped<IPacienteRepositorio, PacienteRepositorio>();
             builder.Services.AddScoped<IDepartamentoRepositorio, DepartamentoRepositorio>();
+            builder.Services.AddScoped<IConsultaRepositorio, ConsultaRepositorio>();
 
             var app = builder.Build();
 

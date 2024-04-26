@@ -15,6 +15,7 @@ namespace HospitalManager.Data
         public DbSet<Medico> Medicos { get; set; }
         public DbSet<Enfermeiro> Enfermeiros { get; set; }
         public DbSet<Paciente> Pacientes { get; set; }
+        public DbSet<Consulta> Consultas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
