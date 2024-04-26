@@ -1,4 +1,6 @@
-﻿namespace HospitalManager.Models
+﻿using HospitalManager.Enums;
+
+namespace HospitalManager.Models
 {
     public class Consulta
     {
@@ -9,7 +11,7 @@
         public Paciente Paciente { get; set; }
         public DateTime Data { get; set; }
         public string MotivoConsulta { get; set; }
-        public int StatusProcedimento { get; set; }
+        public StatusProcedimento StatusProcedimento { get; set; }
 
     }
 }
