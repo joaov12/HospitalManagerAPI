@@ -28,25 +28,5 @@ namespace HospitalManager.Controllers
 
             return Ok(funcionario);
         }
-
-        [HttpPost]
-        public async Task<ActionResult<Funcionario>> CreateFuncionario(Funcionario funcionario)
-        {
-            return Ok(await _funcionarioRepositorio.Adicionar(funcionario));
-        }
-
-        [HttpPut]
-        public async Task<ActionResult<Funcionario>> UpdateFuncionario(Funcionario funcionario)
-        {
-             funcionario = await _funcionarioRepositorio.Atualizar(funcionario);
-            return Ok(funcionario);
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<bool>> RemoveFuncionario(Guid id)
-        {
-            bool funcionario = await _funcionarioRepositorio.Apagar(id);
-            return Ok(funcionario);
-        }
     }
 }

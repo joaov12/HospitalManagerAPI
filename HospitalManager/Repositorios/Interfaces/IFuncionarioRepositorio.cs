@@ -6,8 +6,5 @@ namespace HospitalManager.Repositorios.Interfaces
     {
         Task<List<Funcionario>> BuscarTodosFuncionarios();
         Task<Funcionario> BuscarPorId(Guid id);
-        Task<Funcionario> Adicionar(Funcionario funcionario);
-        Task<Funcionario> Atualizar(Funcionario funcionario);
-        Task<bool> Apagar(Guid id);
     }
 }
